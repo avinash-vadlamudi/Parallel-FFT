@@ -68,17 +68,36 @@ void ifft(CArray& x)
     x /= x.size();
 }
 
+CArray read_data(int n)
+{
+    double x,y;
+    Complex temp[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>x>>y;
+        Complex temp2 = {x,y};
+        temp[i] = temp2;
+    }
+    CArray data(temp,n);
+    return data;
+}
+
+
 int main()
 {
-    const Complex test[] = {{1.0,1.0},{0.0,1.0},{2.0,1.0},{1.1,4.1},{3.1,5.0},{6.0,6.0},{12.0,3.0},{1.0,1.0}};
+    int n = 8;
+    cin>>n;
+    // const Complex test[] = {{1.0,1.0},{0.0,1.0},{2.0,1.0},{1.1,4.1},{3.1,5.0},{6.0,6.0},{12.0,3.0},{1.0,1.0}};
     // const Complex test[] = { 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0 };
-    CArray data(test, 8);
+    // CArray data(test, n);
+
+    CArray data = read_data(n);
  
     // forward fft
     fft(data);
  
     std::cout << "fft" << std::endl;
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < n; ++i)
     {
         std::cout << data[i] << std::endl;
     }
@@ -87,7 +106,7 @@ int main()
     ifft(data);
  
     std::cout << std::endl << "ifft" << std::endl;
-    for (int i = 0; i < 8; ++i)
+    for (int i = 0; i < n; ++i)
     {
         std::cout << data[i] << std::endl;
     }
