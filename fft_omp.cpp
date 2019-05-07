@@ -24,7 +24,7 @@ void fft(CArray &x)
 		k >>= 1;
 		phiT = phiT * phiT;
 		T = 1.0L;
-        #pragma omp parallel for num_threads(THREADS)
+        #pragma omp parallel for num_threads(THREADS) schedule(static)
         {
             for (unsigned int l = 0; l < k; l++)
             {
